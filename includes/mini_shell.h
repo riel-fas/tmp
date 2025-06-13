@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:19:59 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 20:45:06 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:11:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-// # include "/home/linuxbrew/.linuxbrew/opt/readline/include/readline/rlconf.h" //linux riad
-// # include </Users/roubelka/.brew/opt/readline/include/readline/rlconf.h> //rachid
-# include </Users/riel-fas/.brew/opt/readline/include/readline/rlconf.h> //riad
 # include "../libft/libft.h"
 // # include "lexer.h"
 
@@ -94,7 +91,7 @@ typedef enum e_parse_result
 typedef int	(*t_builtin_func)(t_shell *shell, char **args);
 
 int				execute_commands(t_shell *shell, t_cmds *commands);
-t_parse_result	parse_tokens(t_token *tokens, t_cmds **commands);
+t_cmds		*parse_tokens(t_token *tokens);
 void			print_commands(t_cmds *cmds);
 void			free_commands(t_cmds *cmds);
 
@@ -142,5 +139,11 @@ char	*extract_quoted_string(char *input, int *i, char quote);
 //lexer.c
 t_token	*tokenize(char *input);
 void	print_tokens(t_token *tokens);
+
+//mini_shell_input.c
+int		process_exit_check(char *input);
+int		handle_tokenize_error(t_shell *shell, char *input);
+int		handle_parse_error(t_shell *shell, t_parse_result result);
+int		is_only_whitespace(char *input);
 
 #endif

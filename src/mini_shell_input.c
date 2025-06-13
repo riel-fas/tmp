@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell_input.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 00:00:00 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 20:54:01 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:11:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/mini_shell.h"
+
+int	is_only_whitespace(char *input)
+{
+	if (!input)
+		return (1);
+	while (*input)
+	{
+		if (*input != ' ' && *input != '\t' && *input != '\n' && *input != '\r')
+			return (0);
+		input++;
+	}
+	return (1);
+}
 
 int	process_exit_check(char *input)
 {
