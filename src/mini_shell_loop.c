@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell_loop.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 10:45:00 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 21:11:19 by codespace        ###   ########.fr       */
+/*   Updated: 2025/06/14 01:15:36 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ static int	process_input(t_shell *shell, char *input)
 	if (handle_tokenize_error(shell, input))
 		return (1);
 	print_tokens(shell->tokens);
+
+	// Check for syntax errors
+	if (!check_redirection_syntax(shell->tokens) || !check_pipe_syntax(shell->tokens))
+	{
+		shell->exit_status = 2;
+		free_tokens(shell->tokens);
+		shell->tokens = NULL;
+		return (1);
+	}
+
 	shell->commands = parse_tokens(shell->tokens);
 	if (!shell->commands)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 12:15:00 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 20:43:22 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/14 00:32:29 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	is_builtin(char *cmd)
 		|| ft_strcmp(cmd, "export") == 0
 		|| ft_strcmp(cmd, "unset") == 0
 		|| ft_strcmp(cmd, "env") == 0
-		|| ft_strcmp(cmd, "exit") == 0);
+		|| ft_strcmp(cmd, "exit") == 0
+		|| ft_strcmp(cmd, ":") == 0);
 }
 
 t_builtin_func	get_builtin(char *cmd)
@@ -43,5 +44,7 @@ t_builtin_func	get_builtin(char *cmd)
 		return (&builtin_env);
 	else if (ft_strcmp(cmd, "exit") == 0)
 		return (&builtin_exit);
+	else if (ft_strcmp(cmd, ":") == 0)
+		return (&builtin_colon);
 	return (NULL);
 }

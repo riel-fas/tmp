@@ -158,6 +158,7 @@ SRCS = $(SRC_DIR)/main.c \
 		$(SRC_DIR)/built/builtins.c \
 		$(SRC_DIR)/built/cd.c \
 		$(SRC_DIR)/built/cd_utils.c \
+		$(SRC_DIR)/built/colon.c \
 		$(SRC_DIR)/built/echo.c \
 		$(SRC_DIR)/built/env.c \
 		$(SRC_DIR)/built/exit.c \

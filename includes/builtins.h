@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 12:15:00 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 20:41:54 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/14 00:32:29 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int				builtin_export(t_shell *shell, char **args);
 int				builtin_unset(t_shell *shell, char **args);
 int				builtin_env(t_shell *shell, char **args);
 int				builtin_exit(t_shell *shell, char **args);
+int				builtin_colon(t_shell *shell, char **args);
 
 #endif

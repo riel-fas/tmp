@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 05:35:11 by roubelka          #+#    #+#             */
-/*   Updated: 2025/06/13 14:35:57 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/14 00:52:16 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,37 @@ int check_pipe_syntax(t_token *tokens)
     }
     return 1;
 }
+
+/**
+ * @brief Checks for standalone logical operators that should be syntax errors
+ *
+ * This function checks if certain operators like '!' appear alone without
+ * being followed by a command, which should be treated as a syntax error
+ * similar to bash behavior.
+ *
+ * @param tokens Linked list of tokens to check
+ * @return int 1 if syntax is valid, 0 if there's a syntax error
+ */
+int check_standalone_operators(t_token *tokens)
+{
+    t_token *current = tokens;
+
+    while (current)
+    {
+        // Check if it's a standalone '!' (logical NOT operator)
+        if (current->type == TOKEN_WORD && ft_strcmp(current->value, "!") == 0)
+        {
+            // If '!' is the only token or at the end, it's a syntax error
+            if (!current->next || current->next->type == TOKEN_PIPE)
+            {
+                return (0); // Syntax error - exit silently like bash
+            }
+        }
+        current = current->next;
+    }
+    return (1);
+}
+
 //   ==== fih mochkil bsbab lexer ====
 
 // int check_quotes_closed(t_token *tokens)

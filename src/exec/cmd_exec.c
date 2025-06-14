@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:45:00 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/06/13 20:33:11 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/06/14 00:52:16 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ int	execute_single_command(t_shell *shell, t_cmds *cmd)
 
 	if (!cmd->args || !cmd->args[0])
 		return (0);
+
+	// Handle standalone logical operators that should be syntax errors
+	if (ft_strcmp(cmd->args[0], "!") == 0 && !cmd->args[1])
+	{
+		// Standalone '!' should exit with status 1 (like bash) without error message
+		return (1);
+	}
 
 	// Check for built-in commands
 	if (is_builtin(cmd->args[0]))
